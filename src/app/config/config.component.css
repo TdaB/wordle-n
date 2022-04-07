@@ -1,0 +1,48 @@
+.configContainer {
+    margin: auto;
+    margin-bottom: 5px;
+    width: 300px;
+    height: 105px;
+    border: 1px solid black;
+    border-radius: 15px;
+    text-align: center;
+}
+
+h2 {
+    margin: 5px;
+}
+
+button {
+    padding: 0;
+    margin: 5px;
+    border: 0;
+    border-radius: 15px;
+    border: 1px solid black;
+    font-size: 1.5em;
+    line-height: 1.2;
+    width: 150px;
+    height: 35px;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background: lightgreen;
+    color: black;
+}
+
+.floater {
+    float: left;
+}
+
+input {
+    width: 40px;
+}
+
+.inputs {
+    display: flex;
+    justify-content: center;
+}
+
+.inputSeparator {
+    margin-right: 5px;
+}

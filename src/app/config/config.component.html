@@ -1,0 +1,35 @@
+<div class="configContainer">
+
+  <h2>{{title}}</h2>
+
+  <form [formGroup]="configForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">
+
+    <div class="inputs">
+
+      <div class="floater">
+        <label for="wordLength">
+          Word length:
+        </label>
+        <input id="wordLength" type="number" min="2" max="18" formControlName="wordLength"
+          (change)="onWordLengthChange($event)">
+      </div>
+
+      <div class="inputSeparator">
+      </div>
+
+      <div class="floater">
+        <label for="guesses">
+          Guesses:
+        </label>
+        <input id="guesses" type="number" min="1" max="99" formControlName="guesses">
+      </div>
+
+    </div>
+
+    <button class="button" type="submit">Play</button>
+
+  </form>
+  
+</div>
+
+<ng-template gridContainer></ng-template>

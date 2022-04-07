@@ -1,0 +1,28 @@
+<div class="gridContainer">
+
+  <mat-grid-list *ngFor="let word of guessedWords" cols={{config.wordLength}} rowHeight="1:1">
+    <mat-grid-tile 
+    *ngFor="let square of word.squares" 
+    [style.background]="square.color"
+    [style.font-size]="575 / config.wordLength + 'px'">
+      {{square.letter}}
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols={{config.wordLength}} rowHeight="1:1">
+    <mat-grid-tile 
+    *ngFor="let char of currentWord.split('')" 
+    [style.font-size]="575 / config.wordLength + 'px'">
+      {{char}}
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let _ of [].constructor(config.wordLength - currentWord.length)">
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <h2>Guesses left: {{config.guesses - guessedWords.length}}</h2>
+
+</div>
+
+<!-- <h2>{{config.randomWord}}</h2> -->
+
+<app-alphabet [alphaDict]="alphaDict"></app-alphabet>

@@ -1,0 +1,14 @@
+mat-grid-tile {
+    border: 1px solid black;
+}
+
+.gridContainer {
+    margin: auto;
+    width: 700px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+h2 {
+    margin: 1px;
+}

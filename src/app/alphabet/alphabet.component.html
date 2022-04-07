@@ -1,0 +1,9 @@
+<div class="alphabetContainer">
+    <mat-grid-list cols=13 rowHeight="1:1">
+        <mat-grid-tile 
+        *ngFor="let square of dictToArray()" 
+        [style.background]="square.color">
+            {{square.letter}}
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

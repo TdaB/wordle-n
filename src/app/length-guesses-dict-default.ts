@@ -1,23 +1,23 @@
 import { LengthGuessesDict } from './length-guesses-dict';
 
 /*
-    There are 427 2-letter words
-    There are 2130 3-letter words
-    There are 7186 4-letter words
-    There are 15918 5-letter words
-    There are 29874 6-letter words
-    There are 41998 7-letter words
-    There are 51627 8-letter words
-    There are 53402 9-letter words
-    There are 45872 10-letter words
-    There are 37540 11-letter words
-    There are 29124 12-letter words
-    There are 20944 13-letter words    
-    There are 14149 14-letter words
-    There are 8846 15-letter words
-    There are 5182 16-letter words
-    There are 2967 17-letter words
-    There are 1471 18-letter words
+    There are 421 2-letter words
+    There are 1860 3-letter words
+    There are 5742 4-letter words
+    There are 11921 5-letter words
+    There are 20944 6-letter words    
+    There are 29479 7-letter words
+    There are 35220 8-letter words
+    There are 35146 9-letter words
+    There are 27998 10-letter words
+    There are 21209 11-letter words
+    There are 15224 12-letter words
+    There are 10008 13-letter words
+    There are 5984 14-letter words
+    There are 3479 15-letter words
+    There are 1876 16-letter words
+    There are 987 17-letter words
+    There are 451 18-letter words
 */
 export const LENGTH_GUESSES_DICT_DEFAULT: LengthGuessesDict = {
     2: 4,
@@ -32,9 +32,9 @@ export const LENGTH_GUESSES_DICT_DEFAULT: LengthGuessesDict = {
     11: 13,
     12: 14,
     13: 15,
-    14: 14,
-    15: 13,
-    16: 12,
-    17: 11,
-    18: 10,
+    14: 16,
+    15: 17,
+    16: 18,
+    17: 19,
+    18: 20,
   }

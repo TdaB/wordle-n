@@ -10,6 +10,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigComponent } from './config/config.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GridDirective } from './grid.directive';
+import { VictoryDialogComponent } from './victory-dialog/victory-dialog.component';
+import { InvalidWordDialogComponent } from './invalid-word-dialog/invalid-word-dialog.component';
+import { LossDialogComponent } from './loss-dialog/loss-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,9 @@ import { GridDirective } from './grid.directive';
     AlphabetComponent,
     ConfigComponent,
     GridDirective,
+    VictoryDialogComponent,
+    InvalidWordDialogComponent,
+    LossDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +32,7 @@ import { GridDirective } from './grid.directive';
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatGridListModule,
+    MatDialogModule,
     HttpClientModule,
   ],
   providers: [],

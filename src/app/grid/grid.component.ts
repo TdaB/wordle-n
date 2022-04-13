@@ -1,9 +1,14 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { GameConfig } from '../game-config';
 import { Square } from '../square';
 import { Word } from '../word';
 import { WordlistService } from '../wordlist.service';
 import { ALPHA_DICT_DEFAULT } from '../alpha-dict-default';
+import { MatDialog } from '@angular/material/dialog';
+import { VictoryDialogComponent } from '../victory-dialog/victory-dialog.component';
+import { LossDialogComponent } from '../loss-dialog/loss-dialog.component';
+import { InvalidWordDialogComponent } from '../invalid-word-dialog/invalid-word-dialog.component';
+import { Color } from 'src/color';
 
 @Component({
   selector: 'app-grid',
@@ -16,7 +21,9 @@ export class GridComponent {
   currentWord: string = '';
   alphaDict = { ...ALPHA_DICT_DEFAULT };
 
-  constructor(private wordlistService: WordlistService) { }
+  constructor(
+    private wordlistService: WordlistService,
+    public dialog: MatDialog) { }
 
   @HostListener('document:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -35,22 +42,55 @@ export class GridComponent {
 
   async handleWordSubmission(): Promise<void> {
     if (this.currentWord === this.config.randomWord) {
-      alert("YOU FUCKING WON!!!!!");
-      await this.resetGrid();
-      return;
-    }
-    if (await this.wordlistService.isValidWord(this.currentWord)) {
+      this.openVictoryDialog();
+    } else if (await this.wordlistService.isValidWord(this.currentWord)) {
       this.pushCurrentWord();
+      this.currentWord = '';
       if (this.guessedWords.length === this.config.guesses) {
-        alert("YOU FUCKING RAN OUT OF GUESSES!!!!!\nTHE FUCKING WORD WAS: " + this.config.randomWord);
-        await this.resetGrid();
-        return;
+        this.openLossDialog();
       }
-      this.currentWord = '';
     } else {
-      alert("INVALID FUCKING WORD!!!!!");
-      this.currentWord = '';
+      this.openInvalidWordDialog();
     }
+  }
+
+  openVictoryDialog() {
+    const dialogRef = this.dialog.open(VictoryDialogComponent, {
+      data: this.config.randomWord,
+      restoreFocus: false
+    });
+    dialogRef.keydownEvents().subscribe(_ => {
+      dialogRef.close();
+    });
+    dialogRef.afterClosed().subscribe(_ => {
+      this.resetGrid();
+    });
+  }
+
+  openLossDialog() {
+    const dialogRef = this.dialog.open(LossDialogComponent, {
+      data: this.config.randomWord,
+      restoreFocus: false
+    });
+    dialogRef.keydownEvents().subscribe(_ => {
+      dialogRef.close();
+    });
+    dialogRef.afterClosed().subscribe(_ => {
+      this.resetGrid();
+    });
+  }
+
+  openInvalidWordDialog() {
+    const dialogRef = this.dialog.open(InvalidWordDialogComponent, {
+      data: this.currentWord,
+      restoreFocus: false
+    });
+    dialogRef.keydownEvents().subscribe(_ => {
+      dialogRef.close();
+    });
+    dialogRef.afterClosed().subscribe(_ => {
+      this.currentWord = '';
+    });
   }
 
   pushCurrentWord(): void {
@@ -61,23 +101,23 @@ export class GridComponent {
       if (currentChar === this.config.randomWord.charAt(i)) {
         squares.push({
           letter: currentChar,
-          color: 'lightgreen'
+          color: Color.LightGreen
         })
-        this.alphaDict[currentChar] = 'lightgreen';
+        this.alphaDict[currentChar] = Color.LightGreen;
       } else if (this.config.randomWord.includes(currentChar)) {
         squares.push({
           letter: currentChar,
-          color: 'lightyellow'
+          color: Color.LightYellow
         })
-        if (this.alphaDict[currentChar] !== 'lightgreen') {
-          this.alphaDict[currentChar] = 'lightyellow';
+        if (this.alphaDict[currentChar] !== Color.LightGreen) {
+          this.alphaDict[currentChar] = Color.LightYellow;
         }
       } else {
         squares.push({
           letter: currentChar,
-          color: 'lightgray'
+          color: Color.LightGray
         })
-        this.alphaDict[currentChar] = 'lightgray';
+        this.alphaDict[currentChar] = Color.LightGray;
       }
     }
 
